@@ -1,0 +1,88 @@
+﻿<Window x:Class="SaleWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SaleWpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Дата начала" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="tbDateStart"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Дата окончания" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="tbDateEnd"/>
+                </StackPanel>
+                <Button Content="Получить" x:Name="btnGet" Click="btnGet_Click" Grid.Column="2"/>
+            </Grid>
+            <ListView x:Name="lv">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Client.LastName}"/>
+                            <ListView ItemsSource="{Binding Telephones}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Артикул: "></TextBlock>
+                                                <TextBlock Text="{Binding Articul}"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Производитель: "></TextBlock>
+                                                <TextBlock Text="{Binding Manufacturer}"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Наименование: "></TextBlock>
+                                                <TextBlock Text="{Binding NameTelephone}"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Количество: "></TextBlock>
+                                                <TextBlock Text="{Binding Count}"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Цена: "></TextBlock>
+                                                <TextBlock Text="{Binding Cost}"></TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid> 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0">
+                    <ComboBoxItem Content="Фирмы"/>
+                    <ComboBoxItem Content="Продажи"/>
+                </ComboBox>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Image Source="excel.png" Width="40"></Image>
+            <Image Source="word.png" Width="40"></Image>
+            <Image Source="powerpoint.png" Width="40"></Image>
+        </StackPanel>
+    </Grid>
+</Window>
